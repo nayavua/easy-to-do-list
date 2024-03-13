@@ -1,0 +1,49 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #603939;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.task__input{
+    padding: 16px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.16;
+    border: 1px solid;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #5e1515;
+    
+}
+.task__input:focus {
+  border-color: white;
+  outline: none;
+  color: white;
+}
+
+.task__input::placeholder {
+  border-color: white;
+  color: #5e1515;
+  font-size: 16px;
+  line-height: 1.16;
+}
+
+.task__input:focus::placeholder {
+  border-color: white;
+}
+.task__add {
+  background-color: #5e1515;
+  padding: 16px;
+  border-radius: 10px;
+  color: white;
+  border-width: 0;
+}
