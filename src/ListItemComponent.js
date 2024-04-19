@@ -2,9 +2,12 @@ import React from "react";
 
 const ListItemComponent = (props) => {
     return (
-    <li key={`${props.element}${props.index}`}>
-        {props.element} 
-        </li>
+        <>
+        <li className='task__item' key={props.id}>
+        {props.name} 
+            </li>
+        {props.children}
+        </>
     )
 }
 

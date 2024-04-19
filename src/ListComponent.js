@@ -1,53 +1,60 @@
 import React, { useState } from 'react';
 import ListItemComponent from './ListItemComponent';
+import ButtonComponent from './ButtonComponent';
+import { v4 as uuidv4 } from 'uuid';
 
 const ListComponent = () => {
     const [input, setInput] = useState('');
-    const [item, setItem] = useState([]); 
+    const [items, setItems] = useState([]);
 
     const OnClickHandler = () => {
-        const updatedElement = [...item, input];
-        setItem(updatedElement); 
+        const newItem = { id: uuidv4(), name: input }; 
+        setItems([...items, newItem]);
         setInput('');
-    }
+    };
 
     const OnChangeHandler = (e) => {
-        const value = e.target.value;
-        setInput(value);
-    }
-           
-    function checkInput() {
-            const inputField = document.getElementById('task-input');
-            const inputValue = inputField.value;
+        setInput(e.target.value);
+    };
 
-            if (inputValue.trim() === "") {
-                alert("Будь ласка, введіть завдання!");
-            } else {
-                OnClickHandler();
-            }
-    } 
-    const OnEnterHandler = (e) => {
-        if (e.key === 'Enter'){
-            const updatedElement = [...item, input];
-            setItem(updatedElement); 
-            setInput('');
+    const checkInput = () => {
+        if (input.trim() === "") {
+            alert("Будь ласка, введіть завдання!");
+        } else {
+            OnClickHandler();
         }
-    }
+    };
+
+    const OnEnterHandler = (e) => {
+        if (e.key === 'Enter') {
+            OnClickHandler();
+        }
+    };
+
+    const handleDelete = (id) => {
+        const updatedItems = items.filter(item => item.id !== id);
+        setItems(updatedItems);
+    };
 
     return (
-        <div class="task">
+        <div className="task">
             <h1>Твій список завдань</h1>
-            <input class="task__input" id="task-input" placeholder="Сходити в магазин" onKeyDown={OnEnterHandler} onChange={OnChangeHandler} value={input} />
-            <p>Загалом: {item.length}</p>
-            <ul class="task__list">
-                {item.map((element, index) => (
-                    <ListItemComponent key={index} element={element}/>
+            <input className="task__input" id="task-input" placeholder="Сходити в магазин" onKeyDown={OnEnterHandler} onChange={OnChangeHandler} value={input} />
+            <p>Загалом: {items.length}</p>
+            <ul className="task__list">
+                {items.map((element) => (
+                    <ListItemComponent key={element.id} id={element.id} name={element.name}>
+                        <ButtonComponent
+                            text={'Видалити'}
+                            onClick={() => handleDelete(element.id)}
+                            type={'button'}
+                        />
+                    </ListItemComponent>
                 ))}
             </ul>
-            <button class="task__add" onClick={checkInput}>Додати нове завдання</button>
+            <button className="task__add" onClick={checkInput}>Додати нове завдання</button>
         </div>
     );
-
-}
+};
 
 export default ListComponent;

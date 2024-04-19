@@ -13,6 +13,14 @@
   color: white;
 }
 
+.task__list{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-inline-start: 0;
+  list-style-type: none;
+}
 .task__input{
     padding: 16px;
     width: 100%;
@@ -22,7 +30,7 @@
     border-radius: 8px;
     background-color: transparent;
     color: #5e1515;
-    
+    align-self: flex-end;
 }
 .task__input:focus {
   border-color: white;
@@ -40,10 +48,22 @@
 .task__input:focus::placeholder {
   border-color: white;
 }
+.task__item{
+    margin: 10px 0 5px 0;
+}
 .task__add {
   background-color: #5e1515;
   padding: 16px;
   border-radius: 10px;
   color: white;
   border-width: 0;
+}
+
+.delete__btn{
+    background-color: #5e1515;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: white;
+    border-width: 0;
+    align-self: center;
 }
